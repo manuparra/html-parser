@@ -10,7 +10,7 @@ The operation is simple:
 ## How to build
 
 ````
-docker build .
+docker build  -t html-docker-parser .
 ````
 
 ## How to run
@@ -20,6 +20,6 @@ docker build .
 - the source data store of html: `/htmlds/`
 
 ````
-docker run --rm -p 5000:5000 -v /home/user/semantic.rules/:/semantic.rules/ -v /home/user/htmlds/:/htmlds/ --name htmparser htmlparserdocker
+docker run --rm -p 5000:5000 -v /home/user/semantic.rules/:/semantic.rules/ -v /home/user/htmlds/:/htmlds/ --name htmparser  html-docker-parser
 ````
 
