@@ -1,27 +1,25 @@
-# python3-alpine-flask-docker [![Build Status](https://travis-ci.org/nikos/python3-alpine-flask-docker.svg?branch=master)](https://travis-ci.org/nikos/python3-alpine-flask-docker)  [![Image Info](https://images.microbadger.com/badges/image/nikos/alpine-python3-flask.svg)](https://microbadger.com/images/nikos/alpine-python3-flask)
+# html-parser-docker [![Build Status](https://travis-ci.org/nikos/python3-alpine-flask-docker.svg?branch=master)](https://travis-ci.org/nikos/python3-alpine-flask-docker)  [![Image Info](https://images.microbadger.com/badges/image/nikos/alpine-python3-flask.svg)](https://microbadger.com/images/nikos/alpine-python3-flask)
 
-Sample Docker container for a Python 3 Flask based application with minimal footprint.
+This is a Docker parsing service for HTML files using internally the tools: flask, python (+ BS: BeautifulSoup).
 
-Based on "standard" Python 3 Docker image making
-use of Alpine Linux, see https://hub.docker.com/_/python/
+The operation is simple:
+- The container exposes an API.
+- This API provides an HTML file parsing service.
+- The service (API) receives the name of the file to be parsed and the semantics and rules of data extraction for the concrete website.
 
+## How to build
 
-## Build Docker image
+````
+docker build .
+````
 
-Generate docker image:
+## How to run
 
-`make build`
+`html-parser-docker` requires two folders:
+- the semantics rules:  `/semantic.rules/`
+- the source data store of html: `/htmlds/`
 
+````
+docker run --rm -p 5000:5000 -v /home/user/semantic.rules/:/semantic.rules/ -v /home/user/htmlds/:/htmlds/ --name htmparser htmlparserdocker
+````
 
-## Run Docker container
-
-Spin up a container based on this docker image:
-
-`make run`
-
-Now you should be able to open http://0.0.0.0:5000 and see the demo Flask
-app returning a friendly Hello page.
-
-If you use docker machine (on Mac OS X or Windows)
-please consult the docker inspect result to get the IP of the host machine
-(see `make inspect`).
